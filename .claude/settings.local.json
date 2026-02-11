@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ruff check:*)",
+      "Bash(ruff format:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(pytest:*)",
+      "Bash(gh issue create:*)",
+      "Bash(gh issue:*)",
+      "Bash(time python:*)",
+      "Bash(python test_jwt_validation.py:*)",
+      "Bash(gh pr view:*)",
+      "Bash(find:*)",
+      "Bash(gh pr comment:*)",
+      "Bash(python -m pytest tests/infrastructure/test_auth.py::TestAuthServiceImpl::test_extract_user_from_token_success -v)",
+      "Bash(gh api:*)",
+      "Bash(ls:*)",
+      "Bash(ruff:*)"
+    ],
+    "deny": []
+  }
+}
