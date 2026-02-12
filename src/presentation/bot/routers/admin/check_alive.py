@@ -1,3 +1,5 @@
+import logging
+
 from aiogram import Bot, F, Router
 from aiogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 from dishka.integrations.aiogram import FromDishka, inject
@@ -7,6 +9,8 @@ from src.application.admin import (
     CheckAliveInteractor,
     CheckAliveResult,
 )
+
+logger = logging.getLogger(__name__)
 
 router = Router(name="admin_check_alive")
 
@@ -80,6 +84,7 @@ def _format_result(result: CheckAliveResult) -> str:
 @router.callback_query(F.data == "check_alive")
 async def cb_check_alive_menu(callback: CallbackQuery) -> None:
     """Show check alive filter options."""
+    logger.info("Admin %s opened check alive menu", callback.from_user.id)
     await callback.answer()
     await callback.message.edit_text(
         "Select users to check:",
@@ -95,6 +100,7 @@ async def cb_check_alive_handler(
     interactor: FromDishka[CheckAliveInteractor],
 ) -> None:
     """Execute alive check with selected filter."""
+    logger.info("Admin %s started alive check", callback.from_user.id)
     await callback.answer()
 
     # Parse filter from callback data
