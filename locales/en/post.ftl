@@ -26,8 +26,12 @@ send-buttons-dsl = Step 3 of 3 — 🔗 Add buttons with links.
 
     Colors: 🟢 green, 🔴 red, 🔵 blue
 
+    📝 Example:
+    <code>{"["}Buy + https://example.com + green]
+    {"["}Help + https://help.com]</code>
+
 btn-share = Share
-post-saved-header = Post saved! Use:
+post-saved-header = ✅ Post saved! To share, use:
 
 preview-title = Here's how your post will look.
 
@@ -55,7 +59,7 @@ btn-prev-page = <- Back
 delete-confirm = Are you sure you want to delete this post?
 post-deleted = Post deleted.
 btn-delete-yes = Yes, delete
-post-actions-hint = You can delete this post using the button below.
+post-actions-hint = Share this post or manage it using the buttons below.
 btn-back-to-list = Back to list
 btn-back-to-menu = Back to menu
 

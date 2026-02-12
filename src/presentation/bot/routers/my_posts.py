@@ -16,6 +16,7 @@ from src.application.post.get_user_posts import (
     GetUserPostsInteractor,
 )
 from src.application.user.dtos import CreateUserOutputDTO
+from src.infrastructure.config import Config
 from src.presentation.bot.utils.cb_data import MainMenuCBData, MyPostsCBData
 from src.presentation.bot.utils.markups.post import (
     build_inline_keyboard_from_buttons,
@@ -92,6 +93,7 @@ async def preview_post(
     callback_data: MyPostsCBData,
     i18n: TranslatorRunner,
     get_post_detail: FromDishka[GetPostDetailInteractor],
+    config: FromDishka[Config],
 ) -> None:
     logger.info(
         "User %s previewing post %s", callback.from_user.id, callback_data.post_id
@@ -105,7 +107,7 @@ async def preview_post(
         return
 
     inline_kb = build_inline_keyboard_from_buttons(post.buttons)
-    actions_kb = get_post_actions_keyboard(callback_data.post_id, i18n)
+    actions_kb = get_post_actions_keyboard(callback_data.post_id, post.unique_key, i18n)
 
     # Send content based on type
     if post.telegram_file_id and post.content_type == "photo":
@@ -134,8 +136,12 @@ async def preview_post(
         )
 
     # Send actions separately
+    hint_text = (
+        f"🔑 <code>@{config.telegram.bot_username} {post.unique_key}</code>\n\n"
+        f"{i18n.get('post-actions-hint')}"
+    )
     await content_message.reply(
-        text=i18n.get("post-actions-hint"),
+        text=hint_text,
         reply_markup=actions_kb,
     )
     await callback.answer()
