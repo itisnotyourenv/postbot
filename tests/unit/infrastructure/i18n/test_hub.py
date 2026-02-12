@@ -29,15 +29,13 @@ class TestTranslatorHub:
         hub = create_translator_hub(locales_dir)
 
         en_translator = hub.get_translator_by_locale("en")
-        result = en_translator.get("welcome", name="Test")
-        # fluent-compiler adds bidi isolation characters around variables
-        assert result == "Hello, \u2068Test\u2069!"
+        result = en_translator.get("welcome")
+        assert "Welcome to PostMagnet!" in result
 
     def test_russian_translator_returns_russian_string(self) -> None:
         locales_dir = Path(__file__).parent.parent.parent.parent.parent / "locales"
         hub = create_translator_hub(locales_dir)
 
         ru_translator = hub.get_translator_by_locale("ru")
-        result = ru_translator.get("welcome", name="Тест")
-        # fluent-compiler adds bidi isolation characters around variables
-        assert result == "Привет, \u2068Тест\u2069!"  # noqa: RUF001
+        result = ru_translator.get("welcome")
+        assert "Добро пожаловать в PostMagnet!" in result

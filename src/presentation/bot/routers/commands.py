@@ -11,6 +11,7 @@ from src.application.referral.process import (
     ProcessReferralInteractor,
 )
 from src.application.user.dtos import CreateUserOutputDTO
+from src.infrastructure.config import Config
 from src.presentation.bot.utils.cb_data import MainMenuCBData
 from src.presentation.bot.utils.markups.post import get_main_menu_keyboard
 from src.presentation.bot.utils.markups.settings import (
@@ -78,13 +79,17 @@ async def command_start_handler(
 
 
 @router.message(Command("help"))
+@inject
 async def command_help_handler(
     message: Message,
     i18n: TranslatorRunner,
+    config: FromDishka[Config],
 ) -> None:
     """Handle /help command."""
     logger.info("User %s sent /help", message.from_user.id)
-    await message.answer(text=i18n.get("help-text"))
+    await message.answer(
+        text=i18n.get("help-text", bot_username=config.telegram.bot_username),
+    )
 
 
 @router.callback_query(F.data == MainMenuCBData.menu)

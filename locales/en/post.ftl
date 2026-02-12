@@ -3,41 +3,49 @@ btn-create-post = Create Post
 btn-my-posts = My Posts
 
 # Post wizard
-choose-post-type = Choose post type:
+choose-post-type = Step 1 of 3 — Choose post type:
 btn-photo = Photo
 btn-video = Video
 btn-text = Text
 btn-gif = GIF
 btn-cancel = Cancel
-btn-skip = Skip
+btn-skip = No buttons
 
-send-text-content = Send me the text for your post (max 1024 chars):
-send-photo-content = Send me a photo (you can add a caption):
-send-video-content = Send me a video (you can add a caption):
-send-gif-content = Send me a GIF (you can add a caption):
+send-text-content = Step 2 of 3 — Send me the text for your post (max 1024 chars):
+send-photo-content = Step 2 of 3 — Send me a photo (you can add a caption):
+send-video-content = Step 2 of 3 — Send me a video (you can add a caption):
+send-gif-content = Step 2 of 3 — Send me a GIF (you can add a caption):
 
-send-buttons-dsl = Now add inline buttons.
-    Format: [Text + URL + color]
-    Each line = new row. Colors: default, green, blue, red.
-    Press Skip to skip.
+send-buttons-dsl = Step 3 of 3 — 🔗 Add buttons with links.
 
-    Example:
-    [Buy + https://example.com + green]
-    [Support + https://help.com + red]
+    Each line is one button:
+    <code>{"["}Label + URL]</code>
 
-preview-title = Preview:
+    🎨 Want a colored button? Add a color:
+    <code>{"["}Label + URL + green]</code>
 
-    You can resend buttons in [Text + URL + color] format to add or update them.
-btn-confirm = Confirm
-btn-edit = Edit
+    Colors: 🟢 green, 🔴 red, 🔵 blue
 
-post-saved-header = Post saved! Use:
 btn-share = Share
+post-saved-header = Post saved! Use:
+
+    📝 Example:
+    <code>{"["}Buy + https://example.com + green]
+    {"["}Help + https://help.com]</code>
+
+preview-title = Here's how your post will look.
+
+    Happy with it? Tap "Save post".
+    Want to change buttons? Send them again in <code>[Label + URL]</code> format.
+btn-confirm = Save post
+btn-edit = Start over
 
 wizard-cancelled = Cancelled.
 
 wrong-content-type = Wrong content type. Please send { $expected_type }.
-invalid-dsl = Could not parse buttons. Example: [Text + https://url + green]
+invalid-dsl = Invalid button format.
+    Make sure each button follows this format:
+    <code>{"["}Label + https://url]</code>
 text-too-long = Text is too long (max 1024 characters).
 internal-error = Something went wrong, please try again.
 
@@ -60,4 +68,16 @@ open-bot-to-create-post = Open bot to create a post
 inline-not-found = Post not found. Check the key.
 
 # Help
-help-text = This bot lets you create posts with inline buttons and share them via inline mode. Use /start to begin.
+help-text = How to use PostMagnet:
+
+    1. Tap "Create Post" and choose a type (text, photo, video, GIF)
+    2. Send your content
+    3. Add buttons with links (optional)
+    4. Confirm — you'll get a unique key
+
+    To share a post, type in any chat's message field:
+    @{ $bot_username } key
+
+    /start — main menu
+    /settings — settings
+    /referral — referral link

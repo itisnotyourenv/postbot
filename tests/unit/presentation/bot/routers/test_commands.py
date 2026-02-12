@@ -76,7 +76,7 @@ class TestCommandStartHandler:
 
         mock_message.answer.assert_called_once()
         call_args = mock_message.answer.call_args
-        assert call_args.kwargs["text"] == "Hello, \u2068John\u2069!"
+        assert "Welcome to PostMagnet!" in call_args.kwargs["text"]
 
     async def test_start_handler_uses_russian_for_ru_user(
         self, mock_message: MagicMock, mock_command: MagicMock, hub: TranslatorHub
@@ -104,7 +104,7 @@ class TestCommandStartHandler:
 
         mock_message.answer.assert_called_once()
         call_args = mock_message.answer.call_args
-        assert call_args.kwargs["text"] == "Привет, \u2068Иван\u2069!"  # noqa: RUF001
+        assert "Добро пожаловать в PostMagnet!" in call_args.kwargs["text"]
 
     async def test_start_handler_defaults_to_english_for_unknown_language(
         self, mock_message: MagicMock, mock_command: MagicMock, hub: TranslatorHub
@@ -133,4 +133,4 @@ class TestCommandStartHandler:
 
         mock_message.answer.assert_called_once()
         call_args = mock_message.answer.call_args
-        assert call_args.kwargs["text"] == "Hello, \u2068Hans\u2069!"
+        assert "Welcome to PostMagnet!" in call_args.kwargs["text"]
