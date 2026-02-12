@@ -3,7 +3,7 @@ btn-create-post = Create Post
 btn-my-posts = My Posts
 
 # Post wizard
-choose-post-type = Choose post type:
+choose-post-type = Step 1 of 3 — Choose post type:
 btn-photo = Photo
 btn-video = Video
 btn-text = Text
@@ -11,22 +11,22 @@ btn-gif = GIF
 btn-cancel = Cancel
 btn-skip = Skip
 
-send-text-content = Send me the text for your post (max 1024 chars):
-send-photo-content = Send me a photo (you can add a caption):
-send-video-content = Send me a video (you can add a caption):
-send-gif-content = Send me a GIF (you can add a caption):
+send-text-content = Step 2 of 3 — Send me the text for your post (max 1024 chars):
+send-photo-content = Step 2 of 3 — Send me a photo (you can add a caption):
+send-video-content = Step 2 of 3 — Send me a video (you can add a caption):
+send-gif-content = Step 2 of 3 — Send me a GIF (you can add a caption):
 
-send-buttons-dsl = Add buttons with links.
+send-buttons-dsl = Step 3 of 3 — 🔗 Add buttons with links.
 
     Each line is one button:
     <code>{"["}Label + URL]</code>
 
-    Want a colored button? Add a color:
+    🎨 Want a colored button? Add a color:
     <code>{"["}Label + URL + green]</code>
 
-    Colors: green, red, blue
+    Colors: 🟢 green, 🔴 red, 🔵 blue
 
-    Example:
+    📝 Example:
     <code>{"["}Buy + https://example.com + green]
     {"["}Help + https://help.com]</code>
 
