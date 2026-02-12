@@ -26,6 +26,10 @@ send-buttons-dsl = Step 3 of 3 — 🔗 Add buttons with links.
 
     Colors: 🟢 green, 🔴 red, 🔵 blue
 
+    📝 Example:
+    <code>{"["}Buy + https://example.com + green]
+    {"["}Help + https://help.com]</code>
+
 btn-share = Share
 post-saved-header = Post saved! Use:
 
