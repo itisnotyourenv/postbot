@@ -66,4 +66,16 @@ open-bot-to-create-post = Open bot to create a post
 inline-not-found = Post not found. Check the key.
 
 # Help
-help-text = This bot lets you create posts with inline buttons and share them via inline mode. Use /start to begin.
+help-text = How to use PostMagnet:
+
+    1. Tap "Create Post" and choose a type (text, photo, video, GIF)
+    2. Send your content
+    3. Add buttons with links (optional)
+    4. Confirm — you'll get a unique key
+
+    To share a post, type in any chat's message field:
+    @{ $bot_username } key
+
+    /start — main menu
+    /settings — settings
+    /referral — referral link
