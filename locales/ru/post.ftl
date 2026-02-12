@@ -36,7 +36,9 @@ preview-title = Предпросмотр:
 btn-confirm = Подтвердить
 btn-edit = Изменить
 
-post-saved-header = Пост сохранён! Использование:
+post-saved-header = Пост сохранён!
+
+    Чтобы отправить его, введите в поле сообщения любого чата:
 
 wizard-cancelled = Отменено.
 

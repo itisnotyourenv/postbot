@@ -36,7 +36,9 @@ preview-title = Preview:
 btn-confirm = Confirm
 btn-edit = Edit
 
-post-saved-header = Post saved! Use:
+post-saved-header = Post saved!
+
+    To share it, type the following in any chat's message field:
 
 wizard-cancelled = Cancelled.
 
