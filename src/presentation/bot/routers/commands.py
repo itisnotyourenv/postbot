@@ -1,3 +1,5 @@
+import logging
+
 from aiogram import Router
 from aiogram.filters import Command, CommandObject, CommandStart
 from aiogram.types import Message
@@ -13,6 +15,8 @@ from src.presentation.bot.utils.markups.post import get_main_menu_keyboard
 from src.presentation.bot.utils.markups.settings import (
     get_onboarding_language_keyboard,
 )
+
+logger = logging.getLogger(__name__)
 
 router = Router(name="commands")
 
@@ -56,6 +60,7 @@ async def command_start_handler(
     user: CreateUserOutputDTO,
 ) -> None:
     """Handle /start command — show main menu."""
+    logger.info("User %s sent /start (is_new=%s)", message.from_user.id, user.is_new)
     if user.is_new:
         # Process referral for new users only
         await _process_referral_if_applicable(
@@ -77,4 +82,5 @@ async def command_help_handler(
     i18n: TranslatorRunner,
 ) -> None:
     """Handle /help command."""
+    logger.info("User %s sent /help", message.from_user.id)
     await message.answer(text=i18n.get("help-text"))
