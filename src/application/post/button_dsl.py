@@ -60,7 +60,7 @@ def parse_buttons_dsl(raw: str) -> list[list[ParsedButton]]:
                 msg = "Button text cannot be empty."
                 raise ButtonDslError(msg)
 
-            _validate_url(url, text)
+            url = _validate_url(url, text)
 
             style_str = style_str.lower()
             if style_str not in VALID_STYLES:
@@ -80,7 +80,14 @@ def parse_buttons_dsl(raw: str) -> list[list[ParsedButton]]:
     return rows
 
 
-def _validate_url(url: str, button_text: str) -> None:
+def _normalize_url(url: str) -> str:
+    if not url.startswith(("http://", "https://")):
+        url = f"https://{url}"
+    return url
+
+
+def _validate_url(url: str, button_text: str) -> str:
+    url = _normalize_url(url)
     try:
         result = urlparse(url)
         if not result.scheme or not result.netloc:
@@ -88,3 +95,4 @@ def _validate_url(url: str, button_text: str) -> None:
     except (ValueError, AttributeError):
         msg = f'Invalid URL for button "{button_text}"'
         raise ButtonDslError(msg) from None
+    return url
