@@ -150,6 +150,8 @@ async def skip_buttons(
 ) -> None:
     logger.info("User %s skipped buttons step", callback.from_user.id)
     await state.update_data(buttons_dsl=None)
+    await callback.message.delete_reply_markup()
+
     await _show_preview(callback.message, state, i18n, edit=True)
     await callback.answer()
 
