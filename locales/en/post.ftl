@@ -26,6 +26,8 @@ send-buttons-dsl = Now add inline buttons.
     [Support + https://help.com + red]
 
 preview-title = Preview:
+
+    You can resend buttons in [Text + URL + color] format to add or update them.
 btn-confirm = Confirm
 btn-edit = Edit
 
