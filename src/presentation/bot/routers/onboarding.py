@@ -11,6 +11,7 @@ from src.domain.user import UserRepository
 from src.domain.user.vo import LanguageCode, UserId
 from src.presentation.bot.utils import edit_or_answer
 from src.presentation.bot.utils.cb_data import OnboardingCBData
+from src.presentation.bot.utils.markups.post import get_main_menu_keyboard
 from src.presentation.bot.utils.markups.settings import get_welcome_keyboard
 
 router = Router(name="onboarding")
@@ -47,5 +48,5 @@ async def onboarding_language_selected(
     await edit_or_answer(
         callback,
         text=i18n.get("welcome", name=user.first_name.value if user else "User"),
-        reply_markup=get_welcome_keyboard(i18n),
+        reply_markup=get_main_menu_keyboard(i18n),
     )
