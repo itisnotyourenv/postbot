@@ -16,14 +16,19 @@ send-photo-content = Send me a photo (you can add a caption):
 send-video-content = Send me a video (you can add a caption):
 send-gif-content = Send me a GIF (you can add a caption):
 
-send-buttons-dsl = Now add inline buttons.
-    Format: [Text + URL + color]
-    Each line = new row. Colors: default, green, blue, red.
-    Press Skip to skip.
+send-buttons-dsl = Add buttons with links.
+
+    Each line is one button:
+    [Label + URL]
+
+    Want a colored button? Add a color:
+    [Label + URL + green]
+
+    Colors: green, red, blue
 
     Example:
     [Buy + https://example.com + green]
-    [Support + https://help.com + red]
+    [Help + https://help.com]
 
 preview-title = Preview:
 
