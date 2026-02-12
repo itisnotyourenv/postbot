@@ -9,7 +9,7 @@ btn-video = Video
 btn-text = Text
 btn-gif = GIF
 btn-cancel = Cancel
-btn-skip = Skip
+btn-skip = No buttons
 
 send-text-content = Step 2 of 3 — Send me the text for your post (max 1024 chars):
 send-photo-content = Step 2 of 3 — Send me a photo (you can add a caption):
@@ -33,8 +33,8 @@ send-buttons-dsl = Step 3 of 3 — 🔗 Add buttons with links.
 preview-title = Preview:
 
     You can resend buttons in [Text + URL + color] format to add or update them.
-btn-confirm = Confirm
-btn-edit = Edit
+btn-confirm = Save post
+btn-edit = Start over
 
 post-saved-header = Post saved!
 
