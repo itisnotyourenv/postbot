@@ -1,5 +1,5 @@
 from aiogram import Router
-from aiogram.filters import CommandObject, CommandStart
+from aiogram.filters import Command, CommandObject, CommandStart
 from aiogram.types import Message
 from dishka.integrations.aiogram import FromDishka, inject
 from fluentogram import TranslatorRunner
@@ -9,9 +9,9 @@ from src.application.referral.process import (
     ProcessReferralInteractor,
 )
 from src.application.user.dtos import CreateUserOutputDTO
+from src.presentation.bot.utils.markups.post import get_main_menu_keyboard
 from src.presentation.bot.utils.markups.settings import (
     get_onboarding_language_keyboard,
-    get_welcome_keyboard,
 )
 
 router = Router(name="commands")
@@ -55,7 +55,7 @@ async def command_start_handler(
     i18n: TranslatorRunner,
     user: CreateUserOutputDTO,
 ) -> None:
-    """Handle /start command."""
+    """Handle /start command — show main menu."""
     if user.is_new:
         # Process referral for new users only
         await _process_referral_if_applicable(
@@ -66,6 +66,15 @@ async def command_start_handler(
         return
 
     await message.answer(
-        text=i18n.get("welcome", name=user.first_name),
-        reply_markup=get_welcome_keyboard(i18n),
+        text=i18n.get("welcome", name=user.first_name if user else "User"),
+        reply_markup=get_main_menu_keyboard(i18n),
     )
+
+
+@router.message(Command("help"))
+async def command_help_handler(
+    message: Message,
+    i18n: TranslatorRunner,
+) -> None:
+    """Handle /help command."""
+    await message.answer(text=i18n.get("help-text"))
