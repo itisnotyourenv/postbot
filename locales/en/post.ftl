@@ -19,16 +19,16 @@ send-gif-content = Send me a GIF (you can add a caption):
 send-buttons-dsl = Add buttons with links.
 
     Each line is one button:
-    [Label + URL]
+    <code>{"["}Label + URL]</code>
 
     Want a colored button? Add a color:
-    [Label + URL + green]
+    <code>{"["}Label + URL + green]</code>
 
     Colors: green, red, blue
 
     Example:
-    [Buy + https://example.com + green]
-    [Help + https://help.com]
+    <code>{"["}Buy + https://example.com + green]
+    {"["}Help + https://help.com]</code>
 
 preview-title = Preview:
 
