@@ -25,10 +25,12 @@ from src.presentation.bot.routers import setup_routers
 
 async def setup_commands(bot: Bot) -> None:
     """Register bot commands with Telegram."""
-    await bot.set_my_commands([
-        BotCommand(command="start", description="Start the bot"),
-        BotCommand(command="help", description="Show help"),
-    ])
+    await bot.set_my_commands(
+        [
+            BotCommand(command="start", description="Start the bot"),
+            BotCommand(command="help", description="Show help"),
+        ]
+    )
 
 
 async def notify_admins_on_startup(
