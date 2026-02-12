@@ -57,7 +57,7 @@ btn-prev-page = <- Назад
 delete-confirm = Вы уверены, что хотите удалить этот пост?
 post-deleted = Пост удалён.
 btn-delete-yes = Да, удалить
-post-actions-hint = Вы можете удалить этот пост нажав на кнопку ниже.
+post-actions-hint = Поделитесь постом или управляйте им с помощью кнопок ниже.
 btn-back-to-list = К списку
 btn-back-to-menu = В меню
 

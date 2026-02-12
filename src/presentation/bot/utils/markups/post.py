@@ -174,11 +174,17 @@ def get_my_posts_keyboard(
 
 
 def get_post_actions_keyboard(
-    post_id: str, i18n: TranslatorRunner
+    post_id: str, unique_key: str, i18n: TranslatorRunner
 ) -> InlineKeyboardMarkup:
-    """Actions for a single post: Preview and Delete."""
+    """Actions for a single post: Share, Delete, Back."""
     return InlineKeyboardMarkup(
         inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    text=i18n.get("btn-share"),
+                    switch_inline_query=unique_key,
+                ),
+            ],
             [
                 InlineKeyboardButton(
                     text=i18n.get("btn-delete"),
