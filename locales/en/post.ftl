@@ -26,9 +26,8 @@ send-buttons-dsl = Step 3 of 3 — 🔗 Add buttons with links.
 
     Colors: 🟢 green, 🔴 red, 🔵 blue
 
-    📝 Example:
-    <code>{"["}Buy + https://example.com + green]
-    {"["}Help + https://help.com]</code>
+btn-share = Share
+post-saved-header = Post saved! Use:
 
 preview-title = Here's how your post will look.
 
@@ -36,10 +35,6 @@ preview-title = Here's how your post will look.
     Want to change buttons? Send them again in <code>[Label + URL]</code> format.
 btn-confirm = Save post
 btn-edit = Start over
-
-post-saved-header = Post saved!
-
-    To share it, type the following in any chat's message field:
 
 wizard-cancelled = Cancelled.
 
