@@ -104,7 +104,7 @@ async def collect_content(
         if len(message.text) > 1024:
             await message.answer(i18n.get("text-too-long"))
             return
-        text_md = message.text
+        text_md = message.html_text
 
     elif content_type == ContentType.PHOTO.value:
         if not message.photo:
@@ -113,7 +113,7 @@ async def collect_content(
             )
             return
         telegram_file_id = message.photo[-1].file_id
-        text_md = message.caption
+        text_md = message.html_text
 
     elif content_type == ContentType.VIDEO.value:
         if not message.video:
@@ -122,7 +122,7 @@ async def collect_content(
             )
             return
         telegram_file_id = message.video.file_id
-        text_md = message.caption
+        text_md = message.html_text
 
     elif content_type == ContentType.GIF.value:
         if not message.animation:
@@ -131,7 +131,7 @@ async def collect_content(
             )
             return
         telegram_file_id = message.animation.file_id
-        text_md = message.caption
+        text_md = message.html_text
 
     # Validate caption length
     if text_md and len(text_md) > 1024:
@@ -270,7 +270,7 @@ async def _show_preview(
             reply_markup=get_preview_keyboard(i18n),
         )
     elif content_type == ContentType.TEXT.value:
-        media_message = await message.answer_text(
+        media_message = await message.answer(
             text=text_md or "",
             reply_markup=buttons_kb,
         )
