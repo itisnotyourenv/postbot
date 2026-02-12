@@ -19,6 +19,15 @@ class ParsedButton:
 BUTTON_PATTERN = re.compile(r"\[([^\]]+)\]")
 VALID_STYLES = {s.value for s in ButtonStyle}
 
+# Russian → English color aliases for i18n support
+COLOR_ALIASES: dict[str, str] = {
+    "красный": "red",
+    "синий": "blue",
+    "зелёный": "green",
+    "зеленый": "green",
+    "обычный": "default",
+}
+
 
 def parse_buttons_dsl(raw: str) -> list[list[ParsedButton]]:
     """Parse DSL string into rows of buttons.
@@ -63,8 +72,9 @@ def parse_buttons_dsl(raw: str) -> list[list[ParsedButton]]:
             url = _validate_url(url, text)
 
             style_str = style_str.lower()
+            style_str = COLOR_ALIASES.get(style_str, style_str)
             if style_str not in VALID_STYLES:
-                msg = f'Unknown color "{style_str}". Use: default, green, red.'
+                msg = f'Unknown color "{style_str}". Use: default, green, blue, red.'
                 raise ButtonDslError(msg)
 
             row.append(
