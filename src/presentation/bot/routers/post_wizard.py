@@ -264,12 +264,13 @@ async def confirm_post(
         return
 
     await state.clear()
+
+    saved_text = (
+        f"{i18n.get('post-saved-header')}\n"
+        f"<code>@{config.telegram.bot_username} {result.unique_key}</code>"
+    )
     await callback.message.answer(
-        text=i18n.get(
-            "post-saved",
-            unique_key=result.unique_key,
-            bot_username=config.telegram.bot_username,
-        ),
+        text=saved_text,
         reply_markup=get_main_menu_keyboard(i18n),
     )
     await callback.answer()
