@@ -144,6 +144,7 @@ async def collect_content(
     await message.answer(
         text=i18n.get("send-buttons-dsl"),
         reply_markup=get_skip_buttons_keyboard(i18n),
+        disable_web_page_preview=True,
     )
 
 
