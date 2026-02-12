@@ -1,8 +1,8 @@
 import logging
 
-from aiogram import Router, F
+from aiogram import F, Router
 from aiogram.filters import Command, CommandObject, CommandStart
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import CallbackQuery, Message
 from dishka.integrations.aiogram import FromDishka, inject
 from fluentogram import TranslatorRunner
 
@@ -85,7 +85,6 @@ async def command_help_handler(
     """Handle /help command."""
     logger.info("User %s sent /help", message.from_user.id)
     await message.answer(text=i18n.get("help-text"))
-
 
 
 @router.callback_query(F.data == MainMenuCBData.menu)

@@ -68,7 +68,7 @@ async def create_worker_database(base_url: str, worker_url: str) -> None:
         return
 
     # Extract database name from worker URL
-    worker_db_name = worker_url.split("/")[-1]
+    worker_db_name = worker_url.rsplit("/", maxsplit=1)[-1]
 
     # Create engine connected to the main database to create worker database
     main_db_url = base_url.rsplit("/", 1)[0] + "/postgres"  # Connect to postgres db
