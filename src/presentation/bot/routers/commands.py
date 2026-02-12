@@ -1,8 +1,8 @@
 import logging
 
-from aiogram import Router
+from aiogram import Router, F
 from aiogram.filters import Command, CommandObject, CommandStart
-from aiogram.types import Message
+from aiogram.types import Message, CallbackQuery
 from dishka.integrations.aiogram import FromDishka, inject
 from fluentogram import TranslatorRunner
 
@@ -11,6 +11,7 @@ from src.application.referral.process import (
     ProcessReferralInteractor,
 )
 from src.application.user.dtos import CreateUserOutputDTO
+from src.presentation.bot.utils.cb_data import MainMenuCBData
 from src.presentation.bot.utils.markups.post import get_main_menu_keyboard
 from src.presentation.bot.utils.markups.settings import (
     get_onboarding_language_keyboard,
@@ -84,3 +85,18 @@ async def command_help_handler(
     """Handle /help command."""
     logger.info("User %s sent /help", message.from_user.id)
     await message.answer(text=i18n.get("help-text"))
+
+
+
+@router.callback_query(F.data == MainMenuCBData.menu)
+async def cb_main_menu_handler(
+    callback: CallbackQuery,
+    i18n: TranslatorRunner,
+    user: CreateUserOutputDTO,
+) -> None:
+    logger.info("User %s returned to main menu", callback.from_user.id)
+    await callback.message.edit_text(
+        text=i18n.get("welcome", name=user.first_name if user else "User"),
+        reply_markup=get_main_menu_keyboard(i18n),
+    )
+    await callback.answer()
