@@ -1,3 +1,5 @@
+import logging
+
 from aiogram import Router
 from aiogram.types import CallbackQuery
 from dishka.integrations.aiogram import FromDishka, inject
@@ -12,7 +14,8 @@ from src.domain.user.vo import LanguageCode, UserId
 from src.presentation.bot.utils import edit_or_answer
 from src.presentation.bot.utils.cb_data import OnboardingCBData
 from src.presentation.bot.utils.markups.post import get_main_menu_keyboard
-from src.presentation.bot.utils.markups.settings import get_welcome_keyboard
+
+logger = logging.getLogger(__name__)
 
 router = Router(name="onboarding")
 
@@ -27,6 +30,11 @@ async def onboarding_language_selected(
     hub: FromDishka[TranslatorHub],
 ) -> None:
     """Handle language selection during onboarding."""
+    logger.info(
+        "User %s selected language %s during onboarding",
+        callback.from_user.id,
+        callback_data.code,
+    )
     await callback.answer()
 
     user_id = UserId(callback.from_user.id)
