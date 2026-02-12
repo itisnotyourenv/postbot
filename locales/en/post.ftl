@@ -18,7 +18,7 @@ send-gif-content = Send me a GIF (you can add a caption):
 
 send-buttons-dsl = Now add inline buttons.
     Format: [Text + URL + color]
-    Each line = new row. Colors: default, green, red.
+    Each line = new row. Colors: default, green, blue, red.
     Press Skip to skip.
 
     Example:
