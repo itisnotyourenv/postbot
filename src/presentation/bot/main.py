@@ -6,6 +6,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from aiogram.exceptions import TelegramAPIError
+from aiogram.types import BotCommand
 from dishka import make_async_container
 from dishka.integrations.aiogram import setup_dishka
 from fluentogram import TranslatorHub
@@ -20,6 +21,16 @@ from src.infrastructure.di import (
 from src.infrastructure.i18n import DEFAULT_LANGUAGE
 from src.presentation.bot.middleware.user_and_locale import UserAndLocaleMiddleware
 from src.presentation.bot.routers import setup_routers
+
+
+async def setup_commands(bot: Bot) -> None:
+    """Register bot commands with Telegram."""
+    await bot.set_my_commands(
+        [
+            BotCommand(command="start", description="Start the bot"),
+            BotCommand(command="help", description="Show help"),
+        ]
+    )
 
 
 async def notify_admins_on_startup(
@@ -51,7 +62,7 @@ async def main() -> None:
 
     container = make_async_container(
         AuthProvider(),
-        DBProvider(config.postgres),
+        DBProvider(),
         I18nProvider(),
         *interactor_provider_instances,
         context={Config: config},
@@ -65,7 +76,9 @@ async def main() -> None:
         # Register I18n middleware
         dp.message.middleware(UserAndLocaleMiddleware())
         dp.callback_query.middleware(UserAndLocaleMiddleware())
+        dp.inline_query.middleware(UserAndLocaleMiddleware())
 
+        await setup_commands(bot)
         await notify_admins_on_startup(bot, config, hub)
 
     await dp.start_polling(bot, config=config)

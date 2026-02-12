@@ -1,3 +1,5 @@
+import logging
+
 from aiogram import F, Router
 from aiogram.filters import Command
 from aiogram.types import (
@@ -12,6 +14,8 @@ from fluentogram import TranslatorHub
 from src.application.referral.stats import GetStatsInteractor, GetTopReferrersInteractor
 from src.presentation.bot.utils.i18n import extract_language_code
 
+logger = logging.getLogger(__name__)
+
 router = Router(name="admin_stats")
 
 
@@ -23,6 +27,7 @@ async def stats_handler(
     interactor: FromDishka[GetStatsInteractor],
 ) -> None:
     """Handle /stats admin command."""
+    logger.info("Admin %s requested stats", message.from_user.id)
     locale = extract_language_code(message.from_user.language_code)
     i18n = hub.get_translator_by_locale(locale)
 
@@ -64,6 +69,7 @@ async def ref_top_callback(
     interactor: FromDishka[GetTopReferrersInteractor],
 ) -> None:
     """Handle top referrers callback."""
+    logger.info("Admin %s requested top referrers", callback.from_user.id)
     locale = extract_language_code(callback.from_user.language_code)
     i18n = hub.get_translator_by_locale(locale)
 
@@ -92,6 +98,7 @@ async def cb_back_to_stats(
     interactor: FromDishka[GetStatsInteractor],
 ) -> None:
     """Return to stats view."""
+    logger.info("Admin %s returned to stats view", callback.from_user.id)
     locale = extract_language_code(callback.from_user.language_code)
     i18n = hub.get_translator_by_locale(locale)
 

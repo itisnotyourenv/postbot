@@ -1,3 +1,5 @@
+import logging
+
 from aiogram import Router
 from aiogram.filters import Command
 from aiogram.types import Message
@@ -11,6 +13,8 @@ from src.application.referral.get_info import (
 from src.infrastructure.config import Config
 from src.presentation.bot.utils.i18n import extract_language_code
 
+logger = logging.getLogger(__name__)
+
 router = Router(name="referral")
 
 
@@ -23,6 +27,7 @@ async def referral_handler(
     config: FromDishka[Config],
 ) -> None:
     """Show user's referral link and statistics."""
+    logger.info("User %s requested referral info", message.from_user.id)
     locale = extract_language_code(message.from_user.language_code)
     i18n = hub.get_translator_by_locale(locale)
 
