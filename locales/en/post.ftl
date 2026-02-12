@@ -30,9 +30,10 @@ send-buttons-dsl = Step 3 of 3 — 🔗 Add buttons with links.
     <code>{"["}Buy + https://example.com + green]
     {"["}Help + https://help.com]</code>
 
-preview-title = Preview:
+preview-title = Here's how your post will look.
 
-    You can resend buttons in [Text + URL + color] format to add or update them.
+    Happy with it? Tap "Save post".
+    Want to change buttons? Send them again in <code>[Label + URL]</code> format.
 btn-confirm = Save post
 btn-edit = Start over
 
@@ -43,7 +44,9 @@ post-saved-header = Post saved!
 wizard-cancelled = Cancelled.
 
 wrong-content-type = Wrong content type. Please send { $expected_type }.
-invalid-dsl = Could not parse buttons. Example: [Text + https://url + green]
+invalid-dsl = Invalid button format.
+    Make sure each button follows this format:
+    <code>{"["}Label + https://url]</code>
 text-too-long = Text is too long (max 1024 characters).
 internal-error = Something went wrong, please try again.
 
