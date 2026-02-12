@@ -29,10 +29,6 @@ send-buttons-dsl = Step 3 of 3 — 🔗 Add buttons with links.
 btn-share = Share
 post-saved-header = Post saved! Use:
 
-    📝 Example:
-    <code>{"["}Buy + https://example.com + green]
-    {"["}Help + https://help.com]</code>
-
 preview-title = Here's how your post will look.
 
     Happy with it? Tap "Save post".
