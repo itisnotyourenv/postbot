@@ -27,6 +27,7 @@ from src.presentation.bot.utils.cb_data import (
 from src.presentation.bot.utils.markups import back_markup
 from src.presentation.bot.utils.markups.post import (
     get_main_menu_keyboard,
+    get_post_saved_keyboard,
     get_post_type_keyboard,
     get_preview_keyboard,
     get_skip_buttons_keyboard,
@@ -318,7 +319,7 @@ async def confirm_post(
     )
     await callback.message.answer(
         text=saved_text,
-        reply_markup=get_main_menu_keyboard(i18n),
+        reply_markup=get_post_saved_keyboard(result.unique_key, i18n),
     )
     await callback.answer()
 

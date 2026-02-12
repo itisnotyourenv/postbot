@@ -221,6 +221,34 @@ def get_delete_confirm_keyboard(
     )
 
 
+def get_post_saved_keyboard(
+    unique_key: str, i18n: TranslatorRunner
+) -> InlineKeyboardMarkup:
+    """Post saved message keyboard with Share and main menu buttons."""
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    text=i18n.get("btn-share"),
+                    switch_inline_query=unique_key,
+                ),
+            ],
+            [
+                InlineKeyboardButton(
+                    text=i18n.get("btn-create-post"),
+                    callback_data=MainMenuCBData.create_post,
+                ),
+            ],
+            [
+                InlineKeyboardButton(
+                    text=i18n.get("btn-my-posts"),
+                    callback_data=MainMenuCBData.my_posts,
+                ),
+            ],
+        ]
+    )
+
+
 def build_inline_keyboard_from_buttons(
     button_rows: list[list[PostButtonDTO]],
 ) -> InlineKeyboardMarkup | None:

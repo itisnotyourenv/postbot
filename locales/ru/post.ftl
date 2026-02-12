@@ -32,6 +32,7 @@ btn-confirm = Подтвердить
 btn-edit = Изменить
 
 post-saved-header = Пост сохранён! Использование:
+btn-share = Поделиться
 
 wizard-cancelled = Отменено.
 
