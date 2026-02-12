@@ -31,7 +31,7 @@ send-buttons-dsl = Step 3 of 3 — 🔗 Add buttons with links.
     {"["}Help + https://help.com]</code>
 
 btn-share = Share
-post-saved-header = Post saved! Use:
+post-saved-header = ✅ Post saved! To share, use:
 
 preview-title = Here's how your post will look.
 
