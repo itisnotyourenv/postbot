@@ -60,7 +60,7 @@ async def main() -> None:
 
     container = make_async_container(
         AuthProvider(),
-        DBProvider(config.postgres),
+        DBProvider(),
         I18nProvider(),
         *interactor_provider_instances,
         context={Config: config},
