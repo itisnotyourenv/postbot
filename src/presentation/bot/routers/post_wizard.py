@@ -1,6 +1,8 @@
 import logging
+from datetime import UTC, datetime
 
 from aiogram import F, Router
+from aiogram.exceptions import TelegramAPIError
 from aiogram.fsm.context import FSMContext
 from aiogram.types import (
     CallbackQuery,
@@ -282,6 +284,31 @@ async def _show_preview(
         )
 
 
+async def _notify_admins_new_post(
+    callback: CallbackQuery,
+    config: Config,
+    post_id: str,
+    unique_key: str,
+    content_type: str,
+) -> None:
+    bot = callback.bot
+    user = callback.from_user
+    username = f"@{user.username}" if user.username else "no username"
+    text = (
+        f"New Post Created\n\n"
+        f"User: {user.id} ({username})\n"
+        f"Post ID: {post_id}\n"
+        f"Key: <code>@{config.telegram.bot_username} {unique_key}</code>\n"
+        f"Type: {content_type}\n"
+        f"Created: {datetime.now(UTC).strftime('%Y-%m-%d %H:%M:%S')} UTC"
+    )
+    for admin_id in config.telegram.admin_ids:
+        try:
+            await bot.send_message(chat_id=admin_id, text=text)
+        except TelegramAPIError as e:
+            logger.warning("Failed to notify admin %s about new post: %s", admin_id, e)
+
+
 @router.callback_query(F.data == WizardCBData.confirm)
 @inject
 async def confirm_post(
@@ -323,6 +350,14 @@ async def confirm_post(
         reply_markup=get_post_saved_keyboard(result.unique_key, i18n),
     )
     await callback.answer()
+
+    await _notify_admins_new_post(
+        callback=callback,
+        config=config,
+        post_id=str(result.post_id),
+        unique_key=result.unique_key,
+        content_type=data["content_type"],
+    )
 
 
 # --- Restart (Edit) ---
